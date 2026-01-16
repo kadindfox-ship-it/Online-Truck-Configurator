@@ -8,7 +8,10 @@ dotenv.config();
 const DATA_DIR = path.join(process.cwd(), "data");
 const NUMBER_MAP_PATH = path.join(DATA_DIR, "itemNumberToId.json");
 const NAME_FALLBACK_PATH = path.join(DATA_DIR, "itemNameToId_missingNumber.json");
+const cors = require('cors');
+const app = express();
 
+app.use(cors()); // This allows your frontend to talk to this server.
 function loadJsonSafe(p) {
   try {
     return JSON.parse(fs.readFileSync(p, "utf-8"));
@@ -68,9 +71,9 @@ function normalizeKey(s) {
   return String(s ?? "").trim();
 }
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+//const app = express();
+//app.use(cors());
+//app.use(express.json());
 
 const PORT = process.env.PORT || 3001;
 
