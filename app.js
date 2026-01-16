@@ -282,7 +282,7 @@ const openSavedQuotesBtn = document.getElementById("openSavedQuotes");
 const savedQuotesScreen = document.getElementById("savedQuotes");
 const savedQuotesList = document.getElementById("savedQuotesList");
 const savedQuotesBack = document.getElementById("savedQuotesBack");
-const saveBodyQuoteBtn = document.getElementById("saveBodyQuote"); // NEW: Fix Save Button
+const saveBodyQuoteBtn = document.getElementById("saveBodyQuote"); 
 
 // New layout wrappers (so quote-only views can be full width)
 const bodyBuilderGrid = document.getElementById("bodyBuilderGrid");
@@ -1082,13 +1082,17 @@ function renderSavedQuotesList() {
     wrapper.style.padding = "10px";
     wrapper.style.marginBottom = "10px";
 
-    const name = q.name ? q.name : `${q._type} Quote`;
+    // Distinguish "Blank" quotes visually if needed, though they are stored as body quotes
+    let displayType = q._type;
+    if (q.type === "blank") displayType = "Blank";
+
+    const name = q.name ? q.name : `${displayType} Quote`;
     const when = q.savedAt ? new Date(q.savedAt).toLocaleString() : "";
 
     wrapper.innerHTML = `
       <div style="display:flex; justify-content:space-between; gap:12px; align-items:center;">
         <div>
-          <div><strong>${escapeHtml(name)}</strong> <span style="opacity:.7">(${q._type})</span></div>
+          <div><strong>${escapeHtml(name)}</strong> <span style="opacity:.7">(${displayType})</span></div>
           <div style="opacity:.7; font-size: 12px;">${escapeHtml(when)}</div>
         </div>
         <div style="display:flex; gap:8px;">
@@ -1613,8 +1617,15 @@ savedQuotesList.addEventListener("click", (e) => {
     savedQuotesScreen.style.display = "none";
 
     // Load into the app
-    if (type === "Body") loadBodyQuote(found);
-    else loadTruckQuote(found);
+    if (type === "Body") {
+        if (found.type === "blank") {
+            loadBlankQuote(found);
+        } else {
+            loadBodyQuote(found);
+        }
+    } else {
+        loadTruckQuote(found);
+    }
 
     return;
   }
@@ -2008,7 +2019,10 @@ function loadBodyQuote(saved) {
 
   // 3) Switch into edit mode and show the quote UI
   mode = "edit";
+  setModeClass("mode-body-quote"); // Show full width layout
   ensureEditHeaders();
+  
+  if (bodyBuilderGrid) bodyBuilderGrid.style.display = "grid"; // Make visible!
   quoteSection.style.display = "block";
   configurator.style.display = "none";
   blankQuote.style.display = "none";
@@ -2085,6 +2099,12 @@ function loadTruckQuote(saved) {
     truckEditableRows.push({ description: "", price: "" });
   }
 
+  // Set mode class for layout
+  setModeClass("mode-truck-quote");
+
+  // Show the correct Grid container!
+  if (truckBuilderGrid) truckBuilderGrid.style.display = "grid";
+
   // Hide everything else
   configurator.style.display = "none";
   quoteSection.style.display = "none";
@@ -2131,6 +2151,30 @@ function renderBlankQuote() {
 
   const total = blankEditableRows.reduce((s, r) => s + parseMoneyLoose(r.price), 0);
   renderTotalFooter(blankQuoteFoot, total);
+}
+
+// Helper to load Blank Quote
+function loadBlankQuote(saved) {
+    // Restore rows
+    blankEditableRows = (saved?.body?.editableRows || []).map(r => ({
+        description: r.description ?? "",
+        price: r.price ?? ""
+    }));
+
+    if (blankEditableRows.length === 0) {
+        blankEditableRows.push({ description: "", price: "" });
+    }
+
+    // Hide Start Screen Buttons
+    startBlank.style.display = "none";
+    startConfigurator.style.display = "none";
+    openSavedQuotesBtn.style.display = "none";
+
+    // Show Blank Quote UI
+    hideAllScreens();
+    blankQuote.style.display = "block";
+
+    renderBlankQuote();
 }
 
 // Blank Quote Event Delegation
@@ -2230,6 +2274,7 @@ if (saveBlankQuoteBtn) {
       id: new Date().toISOString(),
       savedAt: new Date().toISOString(),
       stage: "body_quote", // Reusing Body Quote structure so it appears in the same list
+      type: "blank", // Mark as blank for specialized loading
       body: {
         selections: {}, // No configurator selections
         editableRows: blankEditableRows.map(r => ({
