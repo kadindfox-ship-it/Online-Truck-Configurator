@@ -361,7 +361,7 @@ async function resolveByItemNumbers(itemNumbers, sourcesByNumber = {}, context =
 
         // 1. Determine the correct URL
 const BASE_URL = window.location.hostname === 'localhost' 
-  ? 'http://localhost:3001' 
+  ? 'http://localhost:5000' 
   : 'https://online-truck-configurator.onrender.com';
 
 // 2. Use that URL in your fetch
