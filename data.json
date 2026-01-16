@@ -1,0 +1,1696 @@
+{
+  "rules": {
+    "body": [
+      {
+        "when": {
+          "bodySeries": "BMT"
+        },
+        "hideOptions": [
+          {
+            "field": "bodyLength",
+            "values": [
+              "14'",
+              "14' 6\"",
+              "15'",
+              "15' 6\"",
+              "16'",
+              "16' 6\"",
+              "20'"
+            ]
+          }
+        ]
+      },
+      {
+        "when": {
+          "bodySeries": "BFL"
+        },
+        "hideOptions": [
+          {
+            "field": "bodyLength",
+            "values": [
+              "14' 6\"",
+              "15' 6\"",
+              "16' 6\""
+            ]
+          }
+        ]
+      },
+      {
+        "when": {
+          "doorSlope": "12\""
+        },
+        "hideOptions": [
+          {
+            "field": "hiLiftTailgate",
+            "values": ["Yes"]
+          }
+        ]
+      },
+
+      {
+        "when": {
+          "sideHtR": "66R"
+        },
+        "hideOptions": [
+          {
+            "field": "sideHtF",
+            "values": ["60F", "54F", "48F"]
+          }
+        ]
+      },
+      {
+        "when": {
+          "sideHtR": "60R"
+        },
+        "hideOptions": [
+          {
+            "field": "sideHtF",
+            "values": ["54F", "48F"]
+          }
+        ]
+      },
+      {
+        "when": {
+          "sideHtR": "54R"
+        },
+        "hideOptions": [
+          {
+            "field": "sideHtF",
+            "values": ["48F"]
+          }
+        ]
+      },
+      {
+        "when": {
+          "sideHtR": "48R"
+        },
+        "hideOptions": [
+          {
+            "field": "sideHtF",
+            "values": []
+          }
+        ]
+      },
+
+      {
+        "when": {
+          "sideHtF": "66F"
+        },
+        "hideOptions": [
+          {
+            "field": "sideHtR",
+            "values": ["48R"]
+          }
+        ]
+      },
+      {
+        "when": {
+          "sideHtF": "60F"
+        },
+        "hideOptions": [
+          {
+            "field": "sideHtR",
+            "values": ["66R"]
+          }
+        ]
+      },
+      {
+        "when": {
+          "sideHtF": "54F"
+        },
+        "hideOptions": [
+          {
+            "field": "sideHtR",
+            "values": ["66R", "60R"]
+          }
+        ]
+      },
+      {
+        "when": {
+          "sideHtF": "48F"
+        },
+        "hideOptions": [
+          {
+            "field": "sideHtR",
+            "values": ["66R", "60R", "54R"]
+          }
+        ]
+      },
+
+      {
+        "when": {
+          "sideHtF": "66F",
+          "sideHtR": "54R"
+        },
+        "addItems": [
+          {
+            "key": "side_ht_adder_66F_54R",
+            "itemNumber": "SRG80-66F54R",
+            "hidden": true,
+            "specLabel": "Side Heights",
+            "specValue": "66F / 54R"
+          }
+        ]
+      },
+      {
+        "when": {
+          "sideHtF": "60F",
+          "sideHtR": "48R"
+        },
+        "addItems": [
+          {
+            "key": "side_ht_adder_60F_48R",
+            "itemNumber": "SRG80-60F48R",
+            "hidden": true,
+            "specLabel": "Side Heights",
+            "specValue": "60F / 48R"
+          }
+        ]
+      }
+    ],
+    "truck": [
+      {
+        "when": {
+          "hitchPlate": "Pintle Plate Only"
+        },
+        "addItems": [
+          {
+            "key": "hitch_plate_only",
+            "itemNumber": "522-2007",
+            "note": "Placeholder mapping per Kadin; verify/adjust later"
+          }
+        ]
+      }
+    ]
+  },
+  "truck": {
+    "chassisMakeModel": {
+      "label": "Chassis Make/Model",
+      "options": {
+        "Freightliner 114SD": {
+          "itemNumber": ""
+        },
+        "International HX": {
+          "itemNumber": ""
+        },
+        "Kenworth T880": {
+          "itemNumber": ""
+        },
+        "Mack Granite": {
+          "itemNumber": ""
+        },
+        "Peterbilt": {
+          "itemNumber": ""
+        },
+        "Volvo": {
+          "itemNumber": ""
+        },
+        "Western Star 49X": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "transmission": {
+      "label": "Transmission",
+      "options": {
+        "Allison Auto": {
+          "itemNumber": ""
+        },
+        "Mack mDRIVE": {
+          "itemNumber": ""
+        },
+        "Eaton Manual/Ultrashift": {
+          "itemNumber": ""
+        },
+        "International T14": {
+          "itemNumber": ""
+        },
+        "Other": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "ct": {
+      "label": "CT",
+      "options": {
+        "120\"": {
+          "itemNumber": ""
+        },
+        "121\"": {
+          "itemNumber": ""
+        },
+        "122\"": {
+          "itemNumber": ""
+        },
+        "123\"": {
+          "itemNumber": ""
+        },
+        "124\"": {
+          "itemNumber": ""
+        },
+        "125\"": {
+          "itemNumber": ""
+        },
+        "126\"": {
+          "itemNumber": ""
+        },
+        "127\"": {
+          "itemNumber": ""
+        },
+        "128\"": {
+          "itemNumber": ""
+        },
+        "129\"": {
+          "itemNumber": ""
+        },
+        "130\"": {
+          "itemNumber": ""
+        },
+        "131\"": {
+          "itemNumber": ""
+        },
+        "132\"": {
+          "itemNumber": ""
+        },
+        "133\"": {
+          "itemNumber": ""
+        },
+        "134\"": {
+          "itemNumber": ""
+        },
+        "135\"": {
+          "itemNumber": ""
+        },
+        "136\"": {
+          "itemNumber": ""
+        },
+        "137\"": {
+          "itemNumber": ""
+        },
+        "138\"": {
+          "itemNumber": ""
+        },
+        "139\"": {
+          "itemNumber": ""
+        },
+        "140\"": {
+          "itemNumber": ""
+        },
+        "141\"": {
+          "itemNumber": ""
+        },
+        "142\"": {
+          "itemNumber": ""
+        },
+        "143\"": {
+          "itemNumber": ""
+        },
+        "144\"": {
+          "itemNumber": ""
+        },
+        "145\"": {
+          "itemNumber": ""
+        },
+        "146\"": {
+          "itemNumber": ""
+        },
+        "147\"": {
+          "itemNumber": ""
+        },
+        "148\"": {
+          "itemNumber": ""
+        },
+        "149\"": {
+          "itemNumber": ""
+        },
+        "150\"": {
+          "itemNumber": ""
+        },
+        "151\"": {
+          "itemNumber": ""
+        },
+        "152\"": {
+          "itemNumber": ""
+        },
+        "153\"": {
+          "itemNumber": ""
+        },
+        "154\"": {
+          "itemNumber": ""
+        },
+        "155\"": {
+          "itemNumber": ""
+        },
+        "156\"": {
+          "itemNumber": ""
+        },
+        "157\"": {
+          "itemNumber": ""
+        },
+        "158\"": {
+          "itemNumber": ""
+        },
+        "159\"": {
+          "itemNumber": ""
+        },
+        "160\"": {
+          "itemNumber": ""
+        },
+        "161\"": {
+          "itemNumber": ""
+        },
+        "162\"": {
+          "itemNumber": ""
+        },
+        "163\"": {
+          "itemNumber": ""
+        },
+        "164\"": {
+          "itemNumber": ""
+        },
+        "165\"": {
+          "itemNumber": ""
+        },
+        "166\"": {
+          "itemNumber": ""
+        },
+        "167\"": {
+          "itemNumber": ""
+        },
+        "168\"": {
+          "itemNumber": ""
+        },
+        "169\"": {
+          "itemNumber": ""
+        },
+        "170\"": {
+          "itemNumber": ""
+        },
+        "171\"": {
+          "itemNumber": ""
+        },
+        "172\"": {
+          "itemNumber": ""
+        },
+        "173\"": {
+          "itemNumber": ""
+        },
+        "174\"": {
+          "itemNumber": ""
+        },
+        "175\"": {
+          "itemNumber": ""
+        },
+        "176\"": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "driveSplit": {
+      "label": "Drive Split",
+      "options": {
+        "51\"": {
+          "itemNumber": ""
+        },
+        "52\"": {
+          "itemNumber": ""
+        },
+        "53\"": {
+          "itemNumber": ""
+        },
+        "54\"": {
+          "itemNumber": ""
+        },
+        "55\"": {
+          "itemNumber": ""
+        },
+        "56\"": {
+          "itemNumber": ""
+        },
+        "57\"": {
+          "itemNumber": ""
+        },
+        "58\"": {
+          "itemNumber": ""
+        },
+        "59\"": {
+          "itemNumber": ""
+        },
+        "60\"": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "tailgateCylinder": {
+      "label": "Tailgate Cylinder",
+      "options": {
+        "3.25\"": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "bodyProp": {
+      "label": "Body Prop",
+      "options": {
+        "Std. for BVA": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "tarpSystem": {
+      "label": "Tarp System",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "Mountain - Straight Arm Underbody Mount": {
+          "itemNumber": "SRG82-067-01"
+        },
+        "Std. Mountain - Bent Arm Underbody Mount": {
+          "itemNumber": "SRG82-067-02"
+        },
+        "Mountain - Straight Arm Side Mount": {
+          "itemNumber": "SRG82-067-03"
+        },
+        "Mountain - Bent Arm Side Mount": {
+          "itemNumber": "SRG82-067-04"
+        },
+        "Roll Rite": {
+          "itemNumber": "SRG82-067-05"
+        },
+        "Aero": {
+          "itemNumber": "SRG82-067-06"
+        },
+        "Pioneer - Pneumatic": {
+          "itemNumber": "SRG82-067-07"
+        }
+      }
+    },
+    "tarpType": {
+      "label": "Tarp Type",
+      "options": {
+        "NA": {
+          "itemNumber": ""
+        },
+        "Mesh": {
+          "itemNumber": "844-0002"
+        },
+        "Asphalt": {
+          "itemNumber": "844-0001"
+        }
+      }
+    },
+    "bangBoards": {
+      "label": "Bang Boards",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "Std. Black Poly": {
+          "itemNumber": "SRG82-064-02"
+        },
+        "White Poly": {
+          "itemNumber": "SRG82-064-14"
+        },
+        "Steel": {
+          "itemNumber": "SRG82-064-06"
+        },
+        "Oak": {
+          "itemNumber": "SRG82-064-08"
+        },
+        "Pine": {
+          "itemNumber": "SRG82-064-10"
+        },
+        "Rough Cut Wood": {
+          "itemNumber": "SRG82-064-12"
+        },
+        "Brackets Only": {
+          "itemNumber": "SRG82-064-04"
+        }
+      }
+    },
+    "42CenterMudflap": {
+      "label": "42\" Center Mudflap",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "Std. MS Mounting w/belting": {
+          "itemNumber": "SRG82-039-04"
+        },
+        "SS Mounting w/belting": {
+          "itemNumber": "SRG82-039-05"
+        },
+        "MS Mounting w/belting & Customer Logo": {
+          "itemNumber": "SRG82-039-06"
+        },
+        "MS Mounting w/2 Mudflaps": {
+          "itemNumber": "SRG82-039-11"
+        }
+      }
+    },
+    "heatKit": {
+      "label": "Heat Kit",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "Std. SS Electric 4\"": {
+          "itemNumber": "SRG82-068-01"
+        },
+        "SS Electric 5\"": {
+          "itemNumber": "SRG82-068-02"
+        }
+      }
+    },
+    "backupAlarm": {
+      "label": "Backup Alarm",
+      "options": {
+        "Factory Supplied": {
+          "itemNumber": ""
+        },
+        "S&R Supplied": {
+          "itemNumber": "SRG82-075-01"
+        }
+      }
+    },
+    "workRevLightAtHinge": {
+      "label": "Work/ Rev. Light at Hinge",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "(1) Light": {
+          "itemNumber": "SRG82-076-01"
+        },
+        "(2) Lights": {
+          "itemNumber": "SRG82-076-03"
+        }
+      }
+    },
+    "hoistControl": {
+      "label": "Hoist Control",
+      "options": {
+        "Std. Detent Down": {
+          "itemNumber": "J/Stick No PTO Detent D"
+        },
+        "Detent Both Ways": {
+          "itemNumber": "J/Stick No PTO Detent B"
+        },
+        "No Detent w/Auto Off PTO": {
+          "itemNumber": "J/Stick Auto PTO No D"
+        },
+        "No Detent w/Manual Off PTO": {
+          "itemNumber": "J/Stick Manual PTO No D"
+        },
+        "Detent Both Ways w/manual Off PTO": {
+          "itemNumber": "J/Stick Manual PTO Detent B"
+        },
+        "Prem. Tower Only Detent Down, Manual PTO Off": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "controlTowerLocation": {
+      "label": "Control Tower/Location",
+      "options": {
+        "Std. Tower": {
+          "itemNumber": "SRG82-071-01"
+        },
+        "Premium S&R": {
+          "itemNumber": "SRG82-071-02"
+        },
+        "Large S&R": {
+          "itemNumber": "SRG82-071-03"
+        },
+        "Dash Mt.": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "controlOrientation": {
+      "label": "Control Orientation",
+      "options": {
+        "Front to Back": {
+          "itemNumber": ""
+        },
+        "Side to Side": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "mudflapsFrontOfPusher": {
+      "label": "Mudflaps, Front of Pusher",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "Std. Frame Mt. Rubber Flaps": {
+          "itemNumber": "SRG82-039-02"
+        },
+        "Body Mt. Rubber Flaps": {
+          "itemNumber": "SRG82-039-14"
+        },
+        "1/4 Fenders SS": {
+          "itemNumber": "SRG82-039-12"
+        }
+      }
+    },
+    "swingDownMudflaps": {
+      "label": "Swing Down Mudflaps",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "Std. Swing Down Mudflaps (2)": {
+          "itemNumber": "SRG82-039-01"
+        },
+        "Swing Down Mudflaps (2) with Customer Logo": {
+          "itemNumber": "SRG82-039-07"
+        }
+      }
+    },
+    "shovelHolder": {
+      "label": "Shovel Holder",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "Std. Shovel Holder with Pipe": {
+          "itemNumber": "SRG82-066-01"
+        },
+        "Shovel Holder with 3/8\" solid round": {
+          "itemNumber": "SRG82-066-02"
+        },
+        "Shovel Holder with SS Clamp": {
+          "itemNumber": "SRG82-066-03"
+        }
+      }
+    },
+    "hitchPlate": {
+      "label": "Hitch/Plate",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "Pintle Plate Only": {
+          "itemNumber": "522-2007"
+        },
+        "Pintle Plate with 50 Ton Pintle Hitch": {
+          "itemNumber": "SRG82-072-01"
+        },
+        "Pintle Plate with 50 Ton Pintle Hitch & Air Cushion": {
+          "itemNumber": "SRG82-072-02"
+        }
+      }
+    },
+    "addReciever": {
+      "label": "Add Reciever",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "Receiver 2\"": {
+          "itemNumber": "SRG82-072-04"
+        },
+        "Receiver 2.5\"": {
+          "itemNumber": "SRG82-072-05"
+        }
+      }
+    },
+    "trailerPlug": {
+      "label": "7 Pin Trailer Plug",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "Factory supplied": {
+          "itemNumber": ""
+        },
+        "S&R Supplied": {
+          "itemNumber": "SRG82-073-01"
+        }
+      }
+    },
+    "towHook": {
+      "label": "Tow Hook Rear",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "Factory supplied": {
+          "itemNumber": ""
+        },
+        "(2) S&R Supplied": {
+          "itemNumber": "SRG82-045-01"
+        },
+        "(1) S&R Supplied": {
+          "itemNumber": "SRG82-045-02"
+        }
+      }
+    },
+    "hookHeight": {
+      "label": "Hook Height",
+      "options": {
+        "NA": {
+          "itemNumber": ""
+        },
+        "16\"": {
+          "itemNumber": ""
+        },
+        "17\"": {
+          "itemNumber": ""
+        },
+        "18\"": {
+          "itemNumber": ""
+        },
+        "19\"": {
+          "itemNumber": ""
+        },
+        "20\"": {
+          "itemNumber": ""
+        },
+        "21\"": {
+          "itemNumber": ""
+        },
+        "22\"": {
+          "itemNumber": ""
+        },
+        "23\"": {
+          "itemNumber": ""
+        },
+        "24\"": {
+          "itemNumber": ""
+        },
+        "25\"": {
+          "itemNumber": ""
+        },
+        "26\"": {
+          "itemNumber": ""
+        },
+        "27\"": {
+          "itemNumber": ""
+        },
+        "28\"": {
+          "itemNumber": ""
+        },
+        "29\"": {
+          "itemNumber": ""
+        },
+        "30\"": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "2ndTwistlocks": {
+      "label": "2nd Twistlocks",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "Yes": {
+          "itemNumber": "SRG82-083-02"
+        }
+      }
+    },
+    "asphaltReleaseAgentSupplySource": {
+      "label": "Asphalt Release Agent Supply Source",
+      "options": {
+        "None": {
+          "itemNumber": ""
+        },
+        "OEM Tank": {
+          "itemNumber": "SRG82-070-10"
+        },
+        "Split Tank": {
+          "itemNumber": "SRG82-070-02"
+        },
+        "S&R Custom Tank": {
+          "itemNumber": "SRG82-070-03"
+        },
+        "OEM & Split": {
+          "itemNumber": "SRG82-070-11"
+        },
+        "OEM & SR": {
+          "itemNumber": "SRG82-070-12"
+        }
+      }
+    },
+    "asphaltSprayerDischargeLocationS": {
+      "label": "Asphalt Sprayer Discharge Location(s)",
+      "options": {
+        "None": {
+          "itemNumber": ""
+        },
+        "Between Drives": {
+          "itemNumber": "SRG82-070-06"
+        },
+        "Spraybar in Box": {
+          "itemNumber": "SRG82-070-07"
+        },
+        "Between Drives & Spray Bar in Box": {
+          "itemNumber": "SRG82-070-08"
+        }
+      }
+    },
+    "walkrail": {
+      "label": "Walkrail",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "60\" on Dr. Side": {
+          "itemNumber": "SRG82-026-01"
+        },
+        "One Side Full Length": {
+          "itemNumber": "SRG82-026-02"
+        },
+        "Both Sides Full Length": {
+          "itemNumber": "SRG82-026-03"
+        }
+      }
+    },
+    "gladhands": {
+      "label": "Glad Hands",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "Gladhands- Bolt on": {
+          "itemNumber": "SRG82-081-01"
+        },
+        "Std. Gladhands with pipe": {
+          "itemNumber": "SRG82-081-02"
+        }
+      }
+    },
+    "pusherAxle1": {
+      "label": "1st Pusher Axle",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "13.5K Watson 34\"  Steerable-Standard": {
+          "itemNumber": "SRG82-085-01"
+        },
+        "13.5K Watson 34.5\"  Steerable-Standard": {
+          "itemNumber": "SRG82-085-02"
+        },
+        "20K Watson SL2065  Steerable": {
+          "itemNumber": "SRG82-085-03"
+        }
+      }
+    },
+      "pusherAxle2": {
+      "label": "2nd Pusher Axle",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "13.5K Watson 34\"  Steerable-Standard": {
+          "itemNumber": "SRG82-085-01"
+        },
+        "13.5K Watson 34.5\"  Steerable-Standard": {
+          "itemNumber": "SRG82-085-02"
+        },
+        "20K Watson SL2065  Steerable": {
+          "itemNumber": "SRG82-085-03"
+        }
+      }
+    },
+    "tagAxle": {
+      "label": "Tag Axle",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "20K Watson AL2200 Non-Steer": {
+          "itemNumber": "SRG82-085-04"
+        }
+      }
+    },
+    "pto": {
+      "label": "PTO",
+      "options": {
+        "Factory Installed": {
+          "itemNumber": ""
+        },
+        "PTO 280GDFJPB5RB": {
+          "itemNumber": "SRG82-084-01"
+        },
+        "PTO 267SBFJWM3RY": {
+          "itemNumber": "SRG82-084-02"
+        },
+        "PTO 870XEFJPB5XV": {
+          "itemNumber": "SRG82-084-03"
+        },
+        "PTO PT3252PGE633SA": {
+          "itemNumber": "SRG82-084-04"
+        }
+      }
+    },
+    "pump": {
+      "label": "Pump",
+      "options": {
+        "Factory Installed": {
+          "itemNumber": ""
+        },
+        "Pump SG102, with Auto Trans": {
+          "itemNumber": "SRG82-013-01"
+        },
+        "Pump PTBELA22S20 with Auto Trans and Hyva Tip Valve": {
+          "itemNumber": "SRG82-013-02"
+        },
+        "Pump P51 and Hyva Tip Valve": {
+          "itemNumber": "SRG82-013-03"
+        },
+        "Pump Parker F1 Piston": {
+          "itemNumber": "SRG82-013-04"
+        }
+      }
+    },
+    "sidePlate": {
+      "label": "Side Plate",
+      "options": {
+        "Ship Loose (1)": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "camera": {
+      "label": "Camera",
+      "options": {
+        "Yes": {
+          "itemNumber": "SRG82-041-01"
+        },
+        "No": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "shovel": {
+      "label": "Shovel",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "Long Flat": {
+          "itemNumber": "Shovel Flat Long"
+        },
+        "Short Flat": {
+          "itemNumber": "Shovel Short Flat w/ Handle"
+        },
+        "2 Long Flat": {
+          "itemNumber": "Shovel Flat Long"
+        },
+        "2 Short Flat": {
+          "itemNumber": "Shovel Short Flat w/ Handle"
+        },
+        "1 Long Flat & 1 Short Flat": {
+          "itemNumber": "SRG82-066-04"
+        }
+      }
+    },
+    "licensePlate": {
+      "label": "License Plate Rear",
+      "options": {
+        "Std. On Tailgate": {
+          "itemNumber": "SRG82-037-01"
+        },
+        "w/ through bolts on Pintle Plate": {
+          "itemNumber": "SRG82-037-02"
+        },
+        "w/ through bolts on Tailgate": {
+          "itemNumber": "SRG82-037-03"
+        },
+        "w/ through bolts at Hinge": {
+          "itemNumber": "SRG82-037-04"
+        },
+        "Hinged SS bracket": {
+          "itemNumber": "SRG82-037-05"
+        }
+      }
+    },
+    "dotLighting": {
+      "label": "DOT Lighting",
+      "options": {
+        "Std. 4 STT @ Rear, Midship Turns, 3 Bar w/ Rev.": {
+          "itemNumber": "SRG82-017-03"
+        },
+        "Std. + Bumper Turns": {
+          "itemNumber": "SRG82-017-04"
+        }
+      }
+    },
+    "strobesGrill": {
+      "label": "Strobes @ Grill",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "Std. (2) Optronics SLL17ACC2B": {
+          "itemNumber": "SRG82-080-03"
+        },
+        "(4) Optronics SLL17ACC2B": {
+          "itemNumber": "SRG82-080-04"
+        },
+        "(2) VTX609A Whelen": {
+          "itemNumber": "SRG82-080-11"
+        },
+        "(2) WLL242CASHB Optronics": {
+          "itemNumber": "SRG82-080-10"
+        }
+      }
+    },
+    "strobesCabMirror": {
+      "label": "Strobes @ Cab/Mirror",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "(2) Optronics SLL17ACC2B": {
+          "itemNumber": "SRG82-080-03"
+        },
+        "(2) L10LAP Whelen & SR9646": {
+          "itemNumber": "SRG82-080-07",
+          "itemNumber": "SR9646 Western Star Mirror Brkt"
+        },
+        "(2) L32LAF Whelen & SR9646": {
+          "itemNumber": "SRG82-080-08",
+          "itemNumber": "SR9646 Western Star Mirror Brkt"
+        },
+        "(2) L10LAP Whelen & SR9617": {
+          "itemNumber": "SRG82-080-07",
+          "itemNumber": "SR9617"
+        },
+        "(2) L32LAF Whelen & SR9617": {
+          "itemNumber": ""
+        },
+        "(2) L10LAP Whelen & SR9618": {
+          "itemNumber": ""
+        },
+        "(2) L32LAF Whelen & SR9618": {
+          "itemNumber": ""
+        },
+        "(2) WLL242CASHB Optronics": {
+          "itemNumber": ""
+        },
+        "(2) VTX609A Whelen": {
+          "itemNumber": ""
+        },
+        "(2) RBLA11HB Optronics": {
+          "itemNumber": ""
+        },
+        "(2) Mini Highlighter Amber/White": {
+          "itemNumber": ""
+        },
+        "(2) Mini Highlighter Amber Only": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "strobesCabshield": {
+      "label": "Strobes @ Cabshield",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "(4) 6\" Oval Amber": {
+          "itemNumber": ""
+        },
+        "Std. (4) SLL15ACC2B Optronics": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "strobesMidBody": {
+      "label": "Strobes @ Mid Body",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "(2) 6\" Oval Amber": {
+          "itemNumber": ""
+        },
+        "(2) VTX609A Whelen": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "strobesRearBody": {
+      "label": "Strobes @ Rear Body",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "(2) 6\" Oval Amber": {
+          "itemNumber": ""
+        },
+        "(2) SLL15ACC2B Optronics": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "strobesHinge": {
+      "label": "Strobes @ Hinge",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "(1) SLL15ACC2B Optronics": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "2ndLadder": {
+      "label": "2nd Ladder",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "Std. 2nd Ladder, Weld on": {
+          "itemNumber": ""
+        },
+        "2nd Ladder, Bolt on": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "insideBoxStepsFront": {
+      "label": "Inside Box Steps, Front",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "2 Step Rungs": {
+          "itemNumber": ""
+        },
+        "3 Step Rungs": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "insideBoxStepsRear": {
+      "label": "Inside Box Steps, Rear",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "Std. 1 Step": {
+          "itemNumber": ""
+        },
+        "2 Steps": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "ladderExtension": {
+      "label": "Ladder Extension",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "S&R Fold Down SS": {
+          "itemNumber": ""
+        },
+        "Bibeau Fold Down MS": {
+          "itemNumber": ""
+        },
+        "Retractable 2 Rung SS": {
+          "itemNumber": ""
+        },
+        "Retractable 2 Rung MS": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "paint": {
+      "label": "Paint",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "Single Stage Solid Color w/ Clear added to Final Coat": {
+          "itemNumber": ""
+        },
+        "Metallic Color w/ Basecoat and Clearcoat": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "bedlinerLower": {
+      "label": "Bedliner Lower",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "Black": {
+          "itemNumber": ""
+        },
+        "Color Matched": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "bedlinerTailgateLower": {
+      "label": "Bedliner Tailgate Lower",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "Black": {
+          "itemNumber": ""
+        },
+        "Color Matched": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "bedlinerUpper": {
+      "label": "Bedliner Upper",
+      "options": {
+        "No": {
+          "itemNumber": ""
+        },
+        "Black": {
+          "itemNumber": ""
+        },
+        "Color Matched": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "switchLocationPto": {
+      "label": "Switch Location PTO",
+      "options": {
+        "Has Factory in Dash": {
+          "itemNumber": ""
+        },
+        "Install Factory Switch in Dash": {
+          "itemNumber": ""
+        },
+        "Install S&R Switch in Dash": {
+          "itemNumber": ""
+        },
+        "Install S&R Switch in Tower": {
+          "itemNumber": ""
+        },
+        "Install Supplied Switch in Tower": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "switchLocationTailgate": {
+      "label": "Switch Location Tailgate",
+      "options": {
+        "Has Factory in Dash": {
+          "itemNumber": ""
+        },
+        "Install Factory Switch in Dash": {
+          "itemNumber": ""
+        },
+        "Install S&R Switch in Dash": {
+          "itemNumber": ""
+        },
+        "Install S&R Switch in Tower": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "switchLocationHighlift": {
+      "label": "Switch Location Highlift",
+      "options": {
+        "Has Factory in Dash": {
+          "itemNumber": ""
+        },
+        "Install Factory Switch in Dash": {
+          "itemNumber": ""
+        },
+        "Install S&R Switch in Dash": {
+          "itemNumber": ""
+        },
+        "Install S&R Switch in Tower": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "switchLocationStrobes": {
+      "label": "Switch Location Strobes",
+      "options": {
+        "Has Factory in Dash": {
+          "itemNumber": ""
+        },
+        "Install Factory Switch in Dash": {
+          "itemNumber": ""
+        },
+        "Install S&R Switch in Dash": {
+          "itemNumber": ""
+        },
+        "Install S&R Switch in Tower": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "switchLocationHeatKit": {
+      "label": "Switch Location Heat Kit",
+      "options": {
+        "Has Factory in Dash": {
+          "itemNumber": ""
+        },
+        "Install Factory Switch in Dash": {
+          "itemNumber": ""
+        },
+        "Install S&R Switch in Dash": {
+          "itemNumber": ""
+        },
+        "Install Supplied Switch in Tower": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "switchLocationWorkRevLight": {
+      "label": "Switch Location Work/Rev. Light",
+      "options": {
+        "Reverse Trigger Only": {
+          "itemNumber": ""
+        },
+        "Has Factory in Dash & Rev. trigger": {
+          "itemNumber": ""
+        },
+        "Install Factory Switch in Dash & Rev. trigger": {
+          "itemNumber": ""
+        },
+        "Install S&R Switch in Dash & Rev. trigger": {
+          "itemNumber": ""
+        },
+        "Install S&R Switch in Tower & Rev. trigger": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "switchLocationAsphaltSprayer": {
+      "label": "Switch Location Asphalt Sprayer",
+      "options": {
+        "Has Factory in Dash": {
+          "itemNumber": ""
+        },
+        "Install Factory Switch in Dash": {
+          "itemNumber": ""
+        },
+        "Install S&R Switch in Dash": {
+          "itemNumber": ""
+        },
+        "Install S&R Switch in Tower": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "switchLocationAxles": {
+      "label": "Switch Location Axles",
+      "options": {
+        "Has Factory in Dash": {
+          "itemNumber": ""
+        },
+        "Install Factory Switch in Dash": {
+          "itemNumber": ""
+        },
+        "Install S&R Switch in Dash": {
+          "itemNumber": ""
+        },
+        "Install S&R Switch in Tower": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "switchLocationVibrator": {
+      "label": "Switch Location Vibrator",
+      "options": {
+        "Has Factory in Dash": {
+          "itemNumber": ""
+        },
+        "Install Factory Switch in Dash": {
+          "itemNumber": ""
+        },
+        "Install S&R Switch in Dash": {
+          "itemNumber": ""
+        },
+        "Install S&R Switch in Tower": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "switchLocationBoxSprayBar": {
+      "label": "Switch Location Box Spray Bar",
+      "options": {
+        "Has Factory in Dash": {
+          "itemNumber": ""
+        },
+        "Install Factory Switch in Dash": {
+          "itemNumber": ""
+        },
+        "Install S&R Switch in Dash": {
+          "itemNumber": ""
+        },
+        "Install S&R Switch in Tower": {
+          "itemNumber": ""
+        }
+      }
+    },
+    "switchLocationTarp": {
+      "label": "Switch Location Tarp",
+      "options": {
+        "Has Factory in Dash": {
+          "itemNumber": ""
+        },
+        "Install Factory Switch in Dash": {
+          "itemNumber": ""
+        },
+        "Install S&R Switch in Dash": {
+          "itemNumber": ""
+        },
+        "Install Supplied Switch in Tower": {
+          "itemNumber": ""
+        }
+      }
+    }
+  },
+  "bodySeries": {
+    "label": "Body Series",
+    "options": {
+      "BFL": {
+        "itemNumber": ""
+      },
+      "BMT": {
+        "itemNumber": ""
+      },
+      "EL": {
+        "itemNumber": ""
+      },
+      "M": {
+        "itemNumber": ""
+      }
+    },
+    "noQuoteItem": true
+  },
+  "bodyLength": {
+    "label": "Body Length",
+    "options": {
+      "14'": {
+        "itemNumber": ""
+      },
+      "14' 6\"": {
+        "itemNumber": ""
+      },
+      "15'": {
+        "itemNumber": ""
+      },
+      "15' 6\"": {
+        "itemNumber": ""
+      },
+      "16'": {
+        "itemNumber": ""
+      },
+      "16' 6\"": {
+        "itemNumber": ""
+      },
+      "17'": {
+        "itemNumber": ""
+      },
+      "17' 6\"": {
+        "itemNumber": ""
+      },
+      "18'": {
+        "itemNumber": ""
+      },
+      "18' 6\"": {
+        "itemNumber": ""
+      },
+      "19'": {
+        "itemNumber": ""
+      },
+      "19' 6\"": {
+        "itemNumber": ""
+      },
+      "20'": {
+        "itemNumber": ""
+      }
+    },
+    "itemNumberTemplate": "{bodySeries} {bodyLength}"
+  },
+  "sideHtF": {
+    "label": "Side Ht. F",
+    "options": {
+      "66F": {
+        "itemNumber": "",
+        "adderItemNumber": "","quoteBehavior": "addon"
+      },
+      "60F": {
+        "itemNumber": "",
+        "adderItemNumber": "","quoteBehavior": "addon"
+      },
+      "54F": {
+        "itemNumber": "",
+        "adderItemNumber": "","quoteBehavior": "addon"
+      },
+      "48F": {
+        "itemNumber": "",
+        "adderItemNumber": "","quoteBehavior": "addon"
+      }
+    }
+  },
+  "sideHtR": {
+    "label": "Side Ht. R",
+    "options": {
+      "66R": {
+        "itemNumber": "",
+        "adderItemNumber": "","quoteBehavior": "addon"
+      },
+      "60R": {
+        "itemNumber": "",
+        "adderItemNumber": "" ,"quoteBehavior": "addon"
+      },
+      "54R": {
+        "itemNumber": "",
+        "adderItemNumber": "", "quoteBehavior": "addon"
+      },
+      "48R": {
+        "itemNumber": "",
+        "adderItemNumber": "", "quoteBehavior": "addon"
+      }
+    }
+  },
+  "doghouseDepth": {
+    "label": "Doghouse Depth",
+    "options": {
+      "Flat Front": {
+        "itemNumber": "",
+        "adderItemNumber": "SRG80-Flat Front", "quoteBehavior": "addon"
+      },
+      "12\"": {
+        "itemNumber": "",
+        "adderItemNumber": "SRG80-12DH", "quoteBehavior": "addon"
+      },
+      "18\"": {
+        "itemNumber": "",
+        "adderItemNumber": "SRG80-18DH", "quoteBehavior": "addon"
+      }
+    }
+  },
+  "doorSlope": {
+    "label": "Door Slope",
+    "options": {
+      "Std. 8\"": {
+        "itemNumber": "",
+        "adderItemNumber": "","quoteBehavior": "addon"
+      },
+      "12\"": {
+        "itemNumber": "",
+        "adderItemNumber": "SRG80-12DS","quoteBehavior": "addon"
+      },
+      "Straight": {
+        "itemNumber": "",
+        "adderItemNumber": "","quoteBehavior": "addon"
+      }
+    }
+  },
+  "hiLiftTailgate": {
+    "label": "Hi Lift",
+    "options": {
+      "Yes": {
+        "itemNumber": "",
+        "adderItemNumber": "SRG80-HiLift","quoteBehavior": "addon"
+      },
+      "No": {
+        "itemNumber": "",
+        "adderItemNumber": "","quoteBehavior": "addon"
+      }
+    }
+  },
+  "coalDoor": {
+    "label": "Coal Door",
+    "options": {
+      "No": {
+        "itemNumber": "",
+        "adderItemNumber": "","quoteBehavior": "addon"
+      },
+      "Yes": {
+        "itemNumber": "",
+        "adderItemNumber": "SRG80-CoalDoor","quoteBehavior": "addon"
+      }
+    }
+  },
+  "twistlocks": {
+    "label": "Twistlocks",
+    "options": {
+      "No": {
+        "itemNumber": "",
+        "adderItemNumber": "","quoteBehavior": "addon"
+      },
+      "Yes": {
+        "itemNumber": "",
+        "adderItemNumber": "SRG80-Twistlock","quoteBehavior": "addon"
+      }
+    }
+  },
+  "cabShield": {
+    "label": "Cab Shield",
+    "options": {
+      "No": {
+        "itemNumber": "", 
+        "adderItemNumber": "","quoteBehavior": "addon"
+      },
+      "Yes": {
+        "itemNumber": "",
+        "adderItemNumber": "SRG80-CabShield","quoteBehavior": "addon"
+      }
+    }
+  },
+  "lightKit": {
+    "label": "Light Kit",
+    "options": {
+      "LED Kit": {
+        "itemNumber": "",
+        "adderItemNumber": "SRG80-LED Kit","quoteBehavior": "addon"
+      },
+      "No": {
+        "itemNumber": "",
+        "adderItemNumber": "","quoteBehavior": "addon"
+      }
+    }
+  },
+  "pricingSettings": {
+    "bodyBaseCostBySeries": {
+      "BFL": 12197.29,
+      "BMT": 13044.59
+    },
+    "upchargeRate": 0.2089,
+    "rounding": {
+      "decimals": 2,
+      "mode": "HALF_UP"
+    },
+    "hideDefaultSpecs": true,
+    "specDisplay": {
+      "onlyShowIfAdderApplied": true
+    }
+  }
+}

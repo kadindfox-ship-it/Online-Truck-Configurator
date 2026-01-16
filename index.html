@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Truck Quote Builder</title>
+
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: rgba(255,255,255,0.06);
+      --cardHover: rgba(255,255,255,0.09);
+      --border: rgba(255,255,255,0.12);
+      --text: #eef3ff;
+      --muted: rgba(238,243,255,0.72);
+      --shadow: 0 16px 44px rgba(0,0,0,0.45);
+      --radius: 14px;
+
+      --controlBg: rgba(15,23,42,0.94);
+      --controlText: rgba(232,238,252,0.98);
+      --controlBorder: rgba(255,255,255,0.20);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 800px at 10% 10%, rgba(96,165,250,0.22), transparent 55%),
+        radial-gradient(900px 650px at 90% 15%, rgba(34,197,94,0.14), transparent 60%),
+        radial-gradient(900px 650px at 50% 95%, rgba(168,85,247,0.10), transparent 60%),
+        var(--bg);
+      line-height: 1.35;
+    }
+
+    .app {
+      width: min(1500px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 22px 0 72px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      padding: 18px 0 14px;
+      background: linear-gradient(to bottom, rgba(11,16,32,0.92), rgba(11,16,32,0.72), transparent);
+      backdrop-filter: blur(10px);
+    }
+
+    .titleRow {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 3.2vw, 44px);
+      letter-spacing: 0.2px;
+    }
+
+    .subtitle {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .navButtons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    button {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      padding: 9px 12px;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.25);
+      transition: transform 120ms ease, background 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
+    }
+
+    button:hover {
+      background: var(--cardHover);
+      border-color: rgba(255,255,255,0.18);
+      transform: translateY(-1px);
+      box-shadow: 0 14px 32px rgba(0,0,0,0.32);
+    }
+
+    button:active { transform: translateY(0px); }
+
+    button:focus-visible {
+      outline: 2px solid rgba(96,165,250,0.55);
+      outline-offset: 2px;
+    }
+
+    #startConfigurator {
+      border-color: rgba(96,165,250,0.45);
+      background: linear-gradient(180deg, rgba(96,165,250,0.22), rgba(255,255,255,0.06));
+    }
+
+    #openSavedQuotes {
+      border-color: rgba(34,197,94,0.40);
+      background: linear-gradient(180deg, rgba(34,197,94,0.18), rgba(255,255,255,0.06));
+    }
+
+    .card {
+      margin-top: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .cardHeader {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(17,26,46,0.65);
+    }
+
+    .cardHeader h2 {
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: 0.2px;
+    }
+
+    .cardBody {
+      padding: 14px 16px 16px;
+    }
+
+    .stageGridWrap {
+      display: grid;
+      grid-template-columns: minmax(320px, 420px) 1fr;
+      gap: 16px;
+      align-items: start;
+      margin-top: 16px;
+    }
+
+    .questionsScroll {
+      max-height: 58vh;
+      overflow: auto;
+      padding-right: 6px;
+    }
+
+    .questionsScroll::-webkit-scrollbar { width: 10px; }
+    .questionsScroll::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.16);
+      border-radius: 999px;
+      border: 2px solid rgba(0,0,0,0);
+      background-clip: padding-box;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+      margin: 12px 0;
+    }
+
+    .field label {
+      color: rgba(232,238,252,0.86);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.2px;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--controlBorder);
+      background: var(--controlBg);
+      color: var(--controlText);
+      outline: none;
+    }
+
+    select option {
+      background: #0b1220;
+      color: rgba(232,238,252,0.98);
+    }
+
+    select:focus {
+      border-color: rgba(96,165,250,0.55);
+      box-shadow: 0 0 0 3px rgba(96,165,250,0.18);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.04);
+    }
+
+    thead th {
+      text-align: left;
+      font-size: 12px;
+      letter-spacing: 0.35px;
+      text-transform: uppercase;
+      color: rgba(232,238,252,0.78);
+      background: rgba(17,26,46,0.70);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 12px;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    tbody td, tfoot td {
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      vertical-align: middle;
+    }
+
+    tbody tr:hover td { background: rgba(96,165,250,0.08); }
+
+    tfoot td {
+      background: rgba(17,26,46,0.55);
+      border-top: 1px solid rgba(255,255,255,0.12);
+      border-bottom: 0;
+      font-weight: 800;
+    }
+
+    .totalLabel { color: rgba(232,238,252,0.92); }
+    .totalValue { text-align: right; }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    .drag-handle {
+      width: 36px;
+      text-align: center;
+      cursor: grab;
+      user-select: none;
+      font-weight: 800;
+      color: rgba(232,238,252,0.85);
+    }
+
+    .dragging { opacity: 0.6; }
+
+    /* Screen modes: ensure quote-only views are full width and not bunched */
+    body.mode-body-quote #bodyBuilderGrid { grid-template-columns: 1fr; }
+    body.mode-body-quote #configurator { display: none; }
+
+    body.mode-truck-quote #truckBuilderGrid { grid-template-columns: 1fr; }
+    body.mode-truck-quote #truckConfigurator { display: none; }
+
+    @media (max-width: 900px) {
+      .stageGridWrap { grid-template-columns: 1fr; }
+      .questionsScroll { max-height: none; }
+      thead th { position: static; }
+    }
+
+    /* Debug Panel styles */
+    .debug-panel {
+      position: fixed;
+      right: 12px;
+      bottom: 12px;
+      width: min(720px, calc(100vw - 24px));
+      max-height: min(70vh, 720px);
+      background: #0b1220;
+      color: #e5e7eb;
+      border: 1px solid #243044;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      overflow: hidden;
+      z-index: 99999;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .debug-hidden { display: none; }
+
+    .debug-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      border-bottom: 1px solid #243044;
+      background: #0f172a;
+    }
+
+    .debug-title { font-weight: 800; font-size: 14px; }
+
+    .debug-actions button {
+      margin-left: 6px;
+      padding: 6px 10px;
+      border-radius: 10px;
+      border: 1px solid #334155;
+      background: #111827;
+      color: #e5e7eb;
+      cursor: pointer;
+      box-shadow: none;
+    }
+
+    .debug-actions button:hover { background: #0b1220; transform: none; box-shadow: none; }
+
+    .debug-body {
+      padding: 10px 12px;
+      overflow: auto;
+      max-height: calc(70vh - 44px);
+    }
+
+    .debug-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+
+    @media (min-width: 900px) {
+      .debug-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .debug-card { border: 1px solid #243044; border-radius: 10px; overflow: hidden; background: #0b1220; }
+
+    .debug-card-title {
+      padding: 8px 10px;
+      background: #0f172a;
+      border-bottom: 1px solid #243044;
+      font-weight: 800;
+      font-size: 12px;
+    }
+
+    .debug-pre {
+      margin: 0;
+      padding: 10px;
+      font-size: 11px;
+      line-height: 1.35;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .debug-fab {
+      position: fixed;
+      right: 14px;
+      bottom: 14px;
+      z-index: 99998;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid #334155;
+      background: #111827;
+      color: #e5e7eb;
+      cursor: pointer;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-weight: 700;
+    }
+
+    .debug-fab:hover { background: #0b1220; }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <div class="topbar">
+      <div class="titleRow">
+        <div>
+          <h1>Truck Quote Builder</h1>
+          <p class="subtitle">Build, review, and save quotes with a clean, modern workflow.</p>
+        </div>
+
+        <div class="navButtons">
+          <button id="startBlank" type="button">Start Blank Quote</button>
+          <button id="startConfigurator" type="button">Truck Configurator Questions</button>
+          <button id="openSavedQuotes" type="button">Saved Quotes</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BODY BUILDER (Configurator + Body Quote) -->
+    <div id="bodyBuilderGrid" class="stageGridWrap" style="display:none;">
+      <div id="configurator" class="card">
+        <div class="cardHeader"><h2>Configurator</h2></div>
+        <div class="cardBody">
+          <div id="bodyQuestions" class="questionsScroll">
+            <!-- These core selects stay here, auto-fields are inserted into this same scroll area -->
+            <div class="field">
+              <label for="bodySeries">Body Series</label>
+              <select id="bodySeries"></select>
+            </div>
+
+            <div class="field">
+              <label for="bodyLength">Body Length</label>
+              <select id="bodyLength"></select>
+            </div>
+
+            <div class="field">
+              <label for="cabShield">Cab Shield</label>
+              <select id="cabShield"></select>
+            </div>
+          </div>
+
+          <!-- Back/Next are outside the scroll area -->
+          <div class="actions">
+            <button id="back" type="button">Back</button>
+            <button id="next" type="button">Next</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="quoteSection" class="card">
+        <div class="cardHeader"><h2>Body Quote</h2></div>
+        <div class="cardBody">
+          <table border="1" cellpadding="8">
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody id="quoteBody"></tbody>
+            <tfoot id="quoteFoot"></tfoot>
+          </table>
+
+          <div id="bodyQuoteActions" class="actions" style="display:none;">
+            <button id="saveBodyQuote" type="button">Save</button>
+            <button id="printQuote" type="button">Print</button>
+            <button id="copyBodyToStriven" type="button">Copy to Striven</button>
+            <button id="quoteBack" type="button">Back</button>
+            <button id="bodyQuoteNext" type="button">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLANK QUOTE -->
+    <div id="blankQuote" class="card" style="display:none;">
+      <div class="cardHeader"><h2>Blank Quote</h2></div>
+      <div class="cardBody">
+        <p style="margin: 0 0 10px; color: var(--muted);">This is where a blank quote will be built.</p>
+        <div class="actions">
+          <button id="blankBack" type="button">Back</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRUCK BUILDER (Truck Configurator + Truck Quote) -->
+    <div id="truckBuilderGrid" class="stageGridWrap" style="display:none;">
+      <div id="truckConfigurator" class="card">
+        <div class="cardHeader"><h2>Truck Configurator</h2></div>
+        <div class="cardBody">
+          <div id="truckQuestions" class="questionsScroll"></div>
+          <div class="actions">
+            <button id="truckBack" type="button">Back</button>
+            <button id="truckNext" type="button">Next</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="truckQuoteSection" class="card">
+        <div class="cardHeader"><h2>Truck Quote</h2></div>
+        <div class="cardBody">
+          <table border="1" cellpadding="8">
+            <thead>
+              <tr>
+                <th>Move</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="truckQuoteBody"></tbody>
+            <tfoot id="truckQuoteFoot"></tfoot>
+          </table>
+
+          <div id="truckQuoteActions" class="actions" style="display:none;">
+            <button id="saveTruckQuote" type="button">Save</button>
+            <button id="printTruckQuote" type="button">Print</button>
+            <button id="copyTruckToStriven" type="button">Copy to Striven</button>
+            <button id="truckQuoteBack" type="button">Back</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SAVED QUOTES -->
+    <div id="savedQuotes" class="card" style="display:none;">
+      <div class="cardHeader"><h2>Saved Quotes</h2></div>
+      <div class="cardBody">
+        <div id="savedQuotesList"></div>
+        <div class="actions">
+          <button id="savedQuotesBack" type="button">Back</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+
+  <!-- Debug Panel (drop-in) -->
+  <div id="debugPanel" class="debug-panel debug-hidden" aria-live="polite">
+    <div class="debug-header">
+      <div class="debug-title">Debug</div>
+      <div class="debug-actions">
+        <button id="debugToggleBtn" type="button">Hide</button>
+        <button id="debugClearBtn" type="button">Clear</button>
+        <button id="debugCopyBtn" type="button">Copy JSON</button>
+      </div>
+    </div>
+
+    <div class="debug-body">
+      <div class="debug-grid">
+        <div class="debug-card">
+          <div class="debug-card-title">Last Request</div>
+          <pre id="debugLastRequest" class="debug-pre">{}</pre>
+        </div>
+
+        <div class="debug-card">
+          <div class="debug-card-title">Last Response</div>
+          <pre id="debugLastResponse" class="debug-pre">{}</pre>
+        </div>
+
+        <div class="debug-card">
+          <div class="debug-card-title">Unresolved Item Numbers</div>
+          <pre id="debugUnresolved" class="debug-pre">[]</pre>
+        </div>
+
+        <div class="debug-card">
+          <div class="debug-card-title">Log</div>
+          <pre id="debugLog" class="debug-pre"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating debug open button -->
+  <button id="debugOpenFab" type="button" class="debug-fab">Debug</button>
+</body>
+</html>

@@ -1,0 +1,23 @@
+# Dependency directories (already have this)
+node_modules/
+
+# Secrets (already have this)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build folders (where your code goes after it's "compiled")
+dist/
+build/
+.next/
+
+# Log files (records of errors)
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# System files (Mac and Windows junk files)
+.DS_Store
+Thumbs.db
