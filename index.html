@@ -379,13 +379,11 @@
       </div>
     </div>
 
-    <!-- BODY BUILDER (Configurator + Body Quote) -->
     <div id="bodyBuilderGrid" class="stageGridWrap" style="display:none;">
       <div id="configurator" class="card">
         <div class="cardHeader"><h2>Configurator</h2></div>
         <div class="cardBody">
           <div id="bodyQuestions" class="questionsScroll">
-            <!-- These core selects stay here, auto-fields are inserted into this same scroll area -->
             <div class="field">
               <label for="bodySeries">Body Series</label>
               <select id="bodySeries"></select>
@@ -402,7 +400,6 @@
             </div>
           </div>
 
-          <!-- Back/Next are outside the scroll area -->
           <div class="actions">
             <button id="back" type="button">Back</button>
             <button id="next" type="button">Next</button>
@@ -435,18 +432,29 @@
       </div>
     </div>
 
-    <!-- BLANK QUOTE -->
     <div id="blankQuote" class="card" style="display:none;">
       <div class="cardHeader"><h2>Blank Quote</h2></div>
       <div class="cardBody">
-        <p style="margin: 0 0 10px; color: var(--muted);">This is where a blank quote will be built.</p>
+        <table border="1" cellpadding="8">
+          <thead>
+            <tr>
+              <th>Move</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="blankQuoteBody"></tbody>
+          <tfoot id="blankQuoteFoot"></tfoot>
+        </table>
         <div class="actions">
+          <button id="saveBlankQuote" type="button">Save</button>
+          <button id="copyBlankToStriven" type="button">Copy to Striven</button>
           <button id="blankBack" type="button">Back</button>
         </div>
       </div>
     </div>
 
-    <!-- TRUCK BUILDER (Truck Configurator + Truck Quote) -->
     <div id="truckBuilderGrid" class="stageGridWrap" style="display:none;">
       <div id="truckConfigurator" class="card">
         <div class="cardHeader"><h2>Truck Configurator</h2></div>
@@ -485,7 +493,6 @@
       </div>
     </div>
 
-    <!-- SAVED QUOTES -->
     <div id="savedQuotes" class="card" style="display:none;">
       <div class="cardHeader"><h2>Saved Quotes</h2></div>
       <div class="cardBody">
@@ -499,7 +506,6 @@
 
   <script src="app.js"></script>
 
-  <!-- Debug Panel (drop-in) -->
   <div id="debugPanel" class="debug-panel debug-hidden" aria-live="polite">
     <div class="debug-header">
       <div class="debug-title">Debug</div>
@@ -535,7 +541,6 @@
     </div>
   </div>
 
-  <!-- Floating debug open button -->
   <button id="debugOpenFab" type="button" class="debug-fab">Debug</button>
 </body>
 </html>

@@ -9,6 +9,10 @@ let truckEditableRows = [];
 let truckDraggedIndex = null;
 let truckMode = "config"; // "config" | "edit"
 
+// Blank quote state
+let blankEditableRows = [];
+let blankDraggedIndex = null;
+
 // =========================
 // Debug Panel
 // - UI markup lives in index.html (#debugPanel + #debugOpenFab)
@@ -278,7 +282,7 @@ const openSavedQuotesBtn = document.getElementById("openSavedQuotes");
 const savedQuotesScreen = document.getElementById("savedQuotes");
 const savedQuotesList = document.getElementById("savedQuotesList");
 const savedQuotesBack = document.getElementById("savedQuotesBack");
-
+const saveBodyQuoteBtn = document.getElementById("saveBodyQuote"); // NEW: Fix Save Button
 
 // New layout wrappers (so quote-only views can be full width)
 const bodyBuilderGrid = document.getElementById("bodyBuilderGrid");
@@ -287,6 +291,15 @@ const truckBuilderGrid = document.getElementById("truckBuilderGrid");
 // Table footers for Totals
 const quoteFoot = document.getElementById("quoteFoot");
 const truckQuoteFoot = document.getElementById("truckQuoteFoot");
+
+// Blank Quote Elements
+const blankQuote = document.getElementById("blankQuote");
+const blankBack = document.getElementById("blankBack");
+const blankQuoteBody = document.getElementById("blankQuoteBody");
+const blankQuoteFoot = document.getElementById("blankQuoteFoot");
+const saveBlankQuoteBtn = document.getElementById("saveBlankQuote");
+const copyBlankToStrivenBtn = document.getElementById("copyBlankToStriven");
+
 
 function clearModeClasses() {
   document.body.classList.remove("mode-body-quote", "mode-truck-quote");
@@ -768,20 +781,28 @@ back.addEventListener("click", () => {
 });
 
 
-const blankQuote = document.getElementById("blankQuote");
-const blankBack = document.getElementById("blankBack");
-
 startBlank.addEventListener("click", () => {
   startBlank.style.display = "none";
   startConfigurator.style.display = "none";
+  openSavedQuotesBtn.style.display = "none"; // Hide saved button too
+  
+  hideAllScreens();
   blankQuote.style.display = "block";
+
+  // Initialize a blank row if empty
+  if (blankEditableRows.length === 0) {
+    blankEditableRows.push({ description: "", price: "" });
+  }
+  renderBlankQuote();
 });
 
 blankBack.addEventListener("click", () => {
-  blankQuote.style.display = "none";
+  hideAllScreens();
   startBlank.style.display = "inline-block";
   startConfigurator.style.display = "inline-block";
+  openSavedQuotesBtn.style.display = "inline-block";
 });
+
 const bodySeriesSelect = document.getElementById("bodySeries");
 
 const bodyLengthSelect = document.getElementById("bodyLength");
@@ -1822,6 +1843,21 @@ function buildBodyQuoteSaveObject() {
   };
 }
 
+if (saveBodyQuoteBtn) {
+  saveBodyQuoteBtn.addEventListener("click", () => {
+    const quotes = getSavedBodyQuotes();
+    const saveObj = buildBodyQuoteSaveObject();
+
+    const name = prompt("Name this saved Body Quote (optional):", "");
+    if (name && name.trim()) saveObj.name = name.trim();
+
+    quotes.unshift(saveObj);
+    setSavedBodyQuotes(quotes);
+
+    alert("Saved Body Quote!");
+  });
+}
+
 
 // PRINT button (placeholder for now)
 printQuoteBtn.addEventListener("click", () => {
@@ -2066,6 +2102,151 @@ function loadTruckQuote(saved) {
 
   // Render it
   renderTruckQuote();
+}
+
+// ============================================
+// BLANK QUOTE LOGIC
+// ============================================
+
+function renderBlankQuote() {
+  blankQuoteBody.innerHTML = "";
+
+  blankEditableRows.forEach((item, index) => {
+    const row = document.createElement("tr");
+    row.dataset.index = String(index);
+    row.draggable = true;
+    row.classList.add("quote-row");
+
+    row.innerHTML = `
+      <td class="drag-handle" draggable="true" title="Drag to reorder">:::</td>
+      <td contenteditable="true" data-field="description" data-index="${index}">${escapeHtml(item.description ?? "")}</td>
+      <td contenteditable="true" data-field="price" data-index="${index}">${escapeHtml(String(item.price ?? ""))}</td>
+      <td>
+        <button type="button" data-action="add" data-index="${index}">+</button>
+        <button type="button" data-action="delete" data-index="${index}">-</button>
+      </td>
+    `;
+    blankQuoteBody.appendChild(row);
+  });
+
+  const total = blankEditableRows.reduce((s, r) => s + parseMoneyLoose(r.price), 0);
+  renderTotalFooter(blankQuoteFoot, total);
+}
+
+// Blank Quote Event Delegation
+blankQuoteBody.addEventListener("input", (e) => {
+  const cell = e.target;
+  const index = Number(cell.dataset.index);
+  const field = cell.dataset.field;
+  if (Number.isNaN(index) || !field) return;
+
+  if (field === "description") {
+    blankEditableRows[index].description = cell.textContent.trim();
+  } else if (field === "price") {
+    blankEditableRows[index].price = cell.textContent.trim();
+  }
+
+  const total = blankEditableRows.reduce((s, r) => s + parseMoneyLoose(r.price), 0);
+  renderTotalFooter(blankQuoteFoot, total);
+});
+
+blankQuoteBody.addEventListener("click", (e) => {
+  const btn = e.target.closest("button");
+  if (!btn) return;
+
+  const action = btn.dataset.action;
+  const index = Number(btn.dataset.index);
+  if (Number.isNaN(index)) return;
+
+  if (action === "add") {
+    blankEditableRows.splice(index + 1, 0, { description: "", price: "" });
+    renderBlankQuote();
+  }
+
+  if (action === "delete") {
+    blankEditableRows.splice(index, 1);
+    if (blankEditableRows.length === 0) blankEditableRows.push({ description: "", price: "" });
+    renderBlankQuote();
+  }
+});
+
+// Blank Quote Drag/Drop
+blankQuoteBody.addEventListener("dragstart", (e) => {
+  const handle = e.target.closest(".drag-handle");
+  if (!handle) return;
+  const row = handle.closest("tr");
+  if (!row) return;
+
+  blankDraggedIndex = Number(row.dataset.index);
+  if (Number.isNaN(blankDraggedIndex)) return;
+
+  e.dataTransfer.setData("text/plain", String(blankDraggedIndex));
+  e.dataTransfer.effectAllowed = "move";
+  row.classList.add("dragging");
+});
+
+blankQuoteBody.addEventListener("dragend", (e) => {
+  const row = e.target.closest("tr");
+  if (row) row.classList.remove("dragging");
+});
+
+blankQuoteBody.addEventListener("dragover", (e) => {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = "move";
+});
+
+blankQuoteBody.addEventListener("drop", (e) => {
+  e.preventDefault();
+  const dropRow = e.target.closest("tr");
+  if (!dropRow) return;
+
+  const toIndex = Number(dropRow.dataset.index);
+  const fromIndex = blankDraggedIndex !== null ? blankDraggedIndex : Number(e.dataTransfer.getData("text/plain"));
+
+  if (Number.isNaN(fromIndex) || Number.isNaN(toIndex)) return;
+  if (fromIndex === toIndex) return;
+
+  const [moved] = blankEditableRows.splice(fromIndex, 1);
+  blankEditableRows.splice(toIndex, 0, moved);
+
+  blankDraggedIndex = null;
+  renderBlankQuote();
+});
+
+// Blank Quote Actions
+if (copyBlankToStrivenBtn) {
+  copyBlankToStrivenBtn.addEventListener("click", async () => {
+    const rows = readEditableRowsFromTableBody(document.getElementById("blankQuoteBody"));
+    const html = buildStrivenWorkTableHtml(rows);
+    await copyHtmlToClipboard(html);
+    alert("Copied Blank Quote to clipboard (inline HTML) for Striven.");
+  });
+}
+
+if (saveBlankQuoteBtn) {
+  saveBlankQuoteBtn.addEventListener("click", () => {
+    const quotes = getSavedBodyQuotes();
+    const saveObj = {
+      id: new Date().toISOString(),
+      savedAt: new Date().toISOString(),
+      stage: "body_quote", // Reusing Body Quote structure so it appears in the same list
+      body: {
+        selections: {}, // No configurator selections
+        editableRows: blankEditableRows.map(r => ({
+          description: r.description ?? "",
+          price: r.price ?? ""
+        }))
+      }
+    };
+
+    const name = prompt("Name this saved Blank Quote (optional):", "");
+    if (name && name.trim()) saveObj.name = name.trim();
+
+    quotes.unshift(saveObj);
+    setSavedBodyQuotes(quotes);
+
+    alert("Saved Blank Quote!");
+  });
 }
 
 });
