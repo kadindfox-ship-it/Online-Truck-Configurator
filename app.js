@@ -359,11 +359,17 @@ async function resolveByItemNumbers(itemNumbers, sourcesByNumber = {}, context =
           window.DEBUG.log(`Cache miss. Fetching ${missingNums.length} items: ${missingNums.join(", ")}`);
         }
 
-        const res = await fetch("http://localhost:3001/api/resolve-by-number", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ itemNumbers: missingNums })
-        });
+        // 1. Determine the correct URL
+const BASE_URL = window.location.hostname === 'localhost' 
+  ? 'http://localhost:3001' 
+  : 'https://online-truck-configurator.onrender.com';
+
+// 2. Use that URL in your fetch
+const res = await fetch(`${BASE_URL}/api/resolve-by-number`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ itemNumbers: missingNums })
+});
 
         if (!res.ok) throw new Error("Backend resolve failed");
         
